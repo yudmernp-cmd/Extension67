@@ -1,0 +1,2 @@
+import {finding} from './risk-engine.js';
+export function analyzeCode(s){const findings=[];for(const script of s.scripts)for(const p of script.patterns)if(['innerHTML','document.write','eval'].includes(p.name))findings.push(finding('code-'+findings.length,'Patrón estático: '+p.name,'Código',p.name+' detectado; contenido omitido',script.location+': línea '+p.line,'Revisar el origen de los datos y usar APIs seguras. No hay prueba de flujo desde una fuente no confiable.',{severity:'Bajo',confidence:'Media'}));return {findings,checks:3};}
